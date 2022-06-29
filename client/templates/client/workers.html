@@ -1,0 +1,12 @@
+<h1>Workers</h1>
+{% if workers %}
+    <ul>
+    {% for worker in workers %}
+        <li><a href="{% url 'client:services' worker.id %}">{{ worker.worker_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No worker are available.</p>
+{% endif %}
+
+<br><a href="{% url 'client:menu' %}">MENU</a>
