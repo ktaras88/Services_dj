@@ -1,13 +1,12 @@
 {{worker.worker_name}}
 
-<!--<form action="{% url 'client:date_time' worker.id %}" method="post">-->
-<form action="/client/workers/1/date_time/" method="post">
+<form action="{% url 'client:date_time' worker.id %}" method="post">
 {% csrf_token %}
 {% for service in worker.service_set.all %}
-    <input type="checkbox" name="service-{{ service.id }}" id="service-{{ service.id }}" value="{{ service.id }}">
-    <label for="service-{{ service.id }}">{{service.service_name}} - {{service.price}} - {{service.duration}} </label><br>
+    <input type="checkbox" name="services[]" id="service{{ service.id }}" value="{{ service.id }}">
+    <label for="service{{ service.id }}">{{service.service_name}} - {{service.price}} - {{service.duration}} </label><br>
 {% endfor %}
-<br><input type="submit" value="Date Time">
+<br><input type="submit" value="NEXT">
 </form>
 
 <br><a href="{% url 'client:menu' %}">MENU</a>

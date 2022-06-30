@@ -20,6 +20,8 @@ class ServiceView(DetailView):
 
 def date_time(request, pk):
     worker = get_object_or_404(Worker, pk=pk)
-    # selected_services = worker.service_set.get(???)
+    selected_services = []
+    for service_id in request.POST.getlist('services[]'):
+        selected_services.append(Service.objects.get(pk=service_id).service_name)
 
-    return render(request, 'client/date_time.html', {'worker': worker.worker_name, })
+    return render(request, 'client/date_time.html', {'selected_services': selected_services, })
